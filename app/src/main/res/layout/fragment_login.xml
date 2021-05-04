@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fondo_Poke"
+    tools:context=".fragments.LoginFragment">
+
+
+    <ImageView
+        android:id="@+id/imageLogin"
+        android:layout_width="215dp"
+        android:layout_height="215dp"
+        android:layout_marginTop="32dp"
+        android:contentDescription="@string/pokedex"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/rbgGenero"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pokemon_inicio" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/nombreEditText"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        app:startIconDrawable="@drawable/ic_baseline_account_circle_24"
+        app:boxCornerRadiusBottomEnd="15dp"
+        app:boxCornerRadiusBottomStart="15dp"
+        app:boxCornerRadiusTopEnd="15dp"
+        app:boxCornerRadiusTopStart="15dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageLogin"
+        app:layout_constraintEnd_toStartOf="@+id/textGroupGenero"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageLogin">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtEntrenador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionDone"
+            android:hint="@string/entrenador"
+            android:inputType="textPersonName"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textGroupGenero"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/genero"
+        app:layout_constraintStart_toEndOf="@+id/nombreEditText"
+        app:layout_constraintStart_toStartOf="@+id/nombreEditText"
+        app:layout_constraintTop_toBottomOf="@+id/nombreEditText" />
+
+    <RadioGroup
+        android:id="@+id/rbgGenero"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:checkedButton="@id/radio_Masculino"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/textGroupGenero"
+        app:layout_constraintEnd_toStartOf="@+id/imageLogin"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textGroupGenero"
+        app:layout_constraintStart_toStartOf="@+id/textGroupGenero"
+        app:layout_constraintTop_toBottomOf="@+id/textGroupGenero">
+
+        <RadioButton
+            android:id="@+id/radio_Masculino"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:text="@string/masculino" />
+
+        <RadioButton
+            android:id="@+id/radio_Femenino"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:text="@string/femenino" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnEntrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/entrar"
+        app:boxCornerRadiusBottomEnd="15dp"
+        app:boxCornerRadiusBottomStart="15dp"
+        app:boxCornerRadiusTopEnd="15dp"
+        app:boxCornerRadiusTopStart="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

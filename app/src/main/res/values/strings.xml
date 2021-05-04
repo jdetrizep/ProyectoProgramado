@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">ProyectoPokedex</string>
+    <string name="entrenador">Entrenador</string>
+    <string name="pokedex">Pokedex</string>
+    <string name="masculino">Masculino</string>
+    <string name="femenino">Femenino</string>
+    <string name="genero">Genero</string>
+    <string name="entrar">Entrar</string>
+    <string name="bienvenido_entrenador">Bienvenido Entrenador</string>
+    <string name="nombre">Nombre</string>
+    <string name="txtListaPokemon">Escoje el Pokemon que quieres consultar</string>
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
