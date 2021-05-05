@@ -21,11 +21,7 @@
         android:id="@+id/welcomeFragment"
         android:name="com.proyecto.pokedex.fragments.WelcomeFragment"
         android:label="fragment_welcome"
-        tools:layout="@layout/fragment_welcome" >
-        <argument
-            android:name="user"
-            app:argType="com.proyecto.pokedex.models.Entrenador" />
-    </fragment>
+        tools:layout="@layout/fragment_welcome" />
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.proyecto.pokedex.fragments.MainFragment"

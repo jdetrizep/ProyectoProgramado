@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.setupWithNavController
@@ -13,10 +14,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.proyecto.pokedex.R
 import com.proyecto.pokedex.adapter.PokemonAdapter
+import com.proyecto.pokedex.models.Entrenador
 import com.proyecto.pokedex.models.Pokemon
+import com.proyecto.pokedex.models.SharedViewModel
 
 class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
-    val arguments : WelcomeFragmentArgs by navArgs()
+    //val arguments : WelcomeFragmentArgs by navArgs()
+
+    //Manejo para pasar datos entre Fragments
+    private val model: SharedViewModel by activityViewModels()
+    private lateinit var user: Entrenador
+
     private val adapter = PokemonAdapter()
     private lateinit var pokemonRecycler : RecyclerView
     private lateinit var tituloPrin : TextView
@@ -40,6 +48,9 @@ class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //Carga el Parametro enviado desde otro Fragment
+        user = model.selected.value!!
+
         //Genera el Grid en Pantalla
         adapter.pokemones = getDummyPokemones()
         pokemonRecycler = view.findViewById(R.id.pokemonesRecyclerView)
@@ -48,13 +59,13 @@ class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
 
         //Asignación de Datos en navegación
         tituloPrin = view.findViewById(R.id.txtTitulo)
-        if (arguments.user.generoMasculino){
+        if (user.generoMasculino){
             tituloPrin.text = "Bienvenido Entrenador"
-        }else if (arguments.user.generoFemenino){
+        }else if (user.generoFemenino){
             tituloPrin.text = "Bienvenida Entrenadora"
         }
         nombreEntrenador = view.findViewById(R.id.txtNombre)
-        nombreEntrenador.text = arguments.user.name
+        nombreEntrenador.text = user.name
 
     }
 }
