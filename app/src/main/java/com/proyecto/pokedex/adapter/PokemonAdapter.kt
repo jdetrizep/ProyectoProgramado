@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.proyecto.pokedex.R
 import com.proyecto.pokedex.extensions.mapToVisibility
 import com.proyecto.pokedex.models.Pokemon
+import kotlinx.android.synthetic.main.fragment_pokemon_cell.view.*
 
 class PokemonAdapter : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() {
     private lateinit var nombrePokemon: TextView
@@ -25,21 +26,17 @@ class PokemonAdapter : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() 
 
     inner class PokemonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         fun bind(pokemon: Pokemon) {
-            nombrePokemon = itemView.findViewById(R.id.txtNombrePokemon)
-            descripcionPokemon = itemView.findViewById(R.id.txtDescripcionPokemon)
-            imagenPokemon = itemView.findViewById(R.id.imgPokemon)
-
-            nombrePokemon.text = pokemon.name
-            descripcionPokemon.text = pokemon.description
+            itemView.txtNombrePokemon.text = pokemon.name
+            itemView.txtDescripcionPokemon.text = pokemon.description
 
             itemView.setOnClickListener{
-                descripcionPokemon.visibility = descripcionPokemon.isVisible.not().mapToVisibility()
+                itemView.txtDescripcionPokemon.visibility = itemView.txtDescripcionPokemon.isVisible.not().mapToVisibility()
             }
 
             Glide.with(itemView.context)
                 .load(pokemon.imageURL)
                 .circleCrop()
-                .into(imagenPokemon)
+                .into(itemView.imgPokemon)
 
         }
     }
