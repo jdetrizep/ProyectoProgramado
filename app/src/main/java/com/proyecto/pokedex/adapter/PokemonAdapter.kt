@@ -14,9 +14,6 @@ import com.proyecto.pokedex.models.Pokemon
 import kotlinx.android.synthetic.main.fragment_pokemon_cell.view.*
 
 class PokemonAdapter : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() {
-    private lateinit var nombrePokemon: TextView
-    private lateinit var descripcionPokemon: TextView
-    private lateinit var imagenPokemon: ImageView
 
     var pokemones: List<Pokemon> = emptyList()
     set(value){
