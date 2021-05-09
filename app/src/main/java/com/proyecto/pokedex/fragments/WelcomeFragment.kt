@@ -5,10 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.*
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -72,6 +69,7 @@ class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.makeAPIRequestListaPokemones()
+
     }
 
     override fun onCreateView(
@@ -124,15 +122,27 @@ class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
             view.spinnerCombo.adapter = adapterListaTipoPokemon
 
         }
-        /*val items = listOf("Material", "Design", "Components", "Android")
-        val adapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, items)
-        view.spinnerCombo.adapter = adapter*/
 
+        binding.spinnerCombo.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
 
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                var itemSeleccionado = parent?.getItemAtPosition(position).toString()
+                Toast.makeText(parent?.context,itemSeleccionado,Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
 }
