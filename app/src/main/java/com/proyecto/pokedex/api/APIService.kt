@@ -15,8 +15,8 @@ interface APIService {
     fun getListaTipoPokemones(): Call<TipoResponse>
 
     //Lista un Tipo Especifico
-    @GET("type/{id}")
-    fun getTiposPokemones(@Path("id") idTipoPokemon: Int): Call<TipoPokemonResponse>
+    @GET("type/{nombre}")
+    fun getTiposPokemones(@Path("nombre") nombreTipoPokemon: String): Call<TipoPokemonResponse>
 
     //Lista una cantidad de Pokemones
     @GET("pokemon")

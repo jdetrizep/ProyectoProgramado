@@ -4,15 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.proyecto.pokedex.api.APIService
-import com.proyecto.pokedex.models.*
+import com.proyecto.pokedex.models.TipoPokemon
+import com.proyecto.pokedex.models.TipoResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class PokemonListViewModel : ViewModel() {
-    private val pokemonList = MutableLiveData<List<PokemonDetail>>()
+class TipoPokemonListViewModel : ViewModel() {
+    private val listaPokemones = MutableLiveData<List<TipoPokemon>>()
     private lateinit var service: APIService
 
     init {
@@ -24,24 +25,24 @@ class PokemonListViewModel : ViewModel() {
         service = retrofit.create(APIService::class.java)
     }
 
-    fun makeAPIRequestListaPokemones(nombreTipo: String) {
-        service.getTiposPokemones(nombreTipo).enqueue(object : Callback<TipoPokemonResponse> {
+    fun makeAPIRequestListaTipoPokemones(){
+        service.getListaTipoPokemones().enqueue(object: Callback<TipoResponse>{
             override fun onResponse(
-                call: Call<TipoPokemonResponse>,
-                response: Response<TipoPokemonResponse>
+                call: Call<TipoResponse>,
+                response: Response<TipoResponse>
             ) {
                 response.body()?.let {
-                    pokemonList.postValue(it.listaPokemones)
+                    listaPokemones.postValue(it.listaTiposPokemones)
                 }
             }
 
-            override fun onFailure(call: Call<TipoPokemonResponse>, t: Throwable) {
-                TODO("Not yet implemented")
+            override fun onFailure(call: Call<TipoResponse>, t: Throwable) {
+                val a = "Ocurrio un Error!"
             }
         })
     }
 
-    fun getPokemonList(): LiveData<List<PokemonDetail>> {
-        return pokemonList
+    fun getPokemonList(): LiveData<List<TipoPokemon>> {
+        return listaPokemones
     }
-}//Fin de Clase PokemonListViewModel
+}

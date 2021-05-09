@@ -3,35 +3,50 @@ package com.proyecto.pokedex.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.proyecto.pokedex.R
 import com.proyecto.pokedex.extensions.mapToVisibility
 import com.proyecto.pokedex.models.Pokemon
+import com.proyecto.pokedex.models.PokemonDetail
 import kotlinx.android.synthetic.main.fragment_pokemon_cell.view.*
 
 class PokemonAdapter : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() {
 
-    var pokemones: List<Pokemon> = emptyList()
-    set(value){
-        field = value
-        notifyDataSetChanged()
-    }
+    private lateinit var vPokemon: Pokemon
 
-    inner class PokemonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        fun bind(pokemon: Pokemon) {
-            itemView.txtNombrePokemon.text = pokemon.name
-            itemView.txtDescripcionPokemon.text = pokemon.description
+    var pokemonesApi: List<PokemonDetail> = emptyList()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
-            itemView.setOnClickListener{
-                itemView.txtDescripcionPokemon.visibility = itemView.txtDescripcionPokemon.isVisible.not().mapToVisibility()
+    inner class PokemonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind(pokemonDetail: PokemonDetail) {
+
+            vPokemon =
+                Pokemon(
+                    pokemonDetail.oPokemon.name,
+                    pokemonDetail.oPokemon.pokemonUrl,
+                    "",
+                    "",
+                    0
+                )
+            itemView.txtNombrePokemon.text = vPokemon.name
+            itemView.txtDescripcionPokemon.text = vPokemon.description
+
+            itemView.setOnClickListener {
+                itemView.txtDescripcionPokemon.visibility =
+                    itemView.txtDescripcionPokemon.isVisible.not().mapToVisibility()
             }
 
+            vPokemon.imageURL =
+                "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" +
+                        vPokemon.getNumero().toString() + ".png"
+
             Glide.with(itemView.context)
-                .load(pokemon.imageURL)
+                .load(vPokemon.imageURL)
                 .circleCrop()
                 .into(itemView.imgPokemon)
 
@@ -39,15 +54,17 @@ class PokemonAdapter : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_pokemon_cell, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.fragment_pokemon_cell, parent, false)
         return PokemonViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) {
-        val pokemon = pokemones[position]
+        val pokemon = pokemonesApi[position]
         holder.bind(pokemon)
     }
 
-    override fun getItemCount(): Int = pokemones.size
+    override fun getItemCount(): Int = pokemonesApi.size
+
 
 }//Fin de la Clase PokemonAdapter
