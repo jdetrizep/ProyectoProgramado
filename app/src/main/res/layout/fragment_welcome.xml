@@ -44,25 +44,37 @@
     <TextView
         android:id="@+id/txtTituloLista"
         style="@style/TextAppearance.AppCompat.Title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="@string/txtListaPokemon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/txtTitulo"
+        app:layout_constraintStart_toStartOf="@+id/imgWelcome"
         app:layout_constraintTop_toBottomOf="@+id/imgWelcome" />
+
+
+    <Spinner
+        android:id="@+id/spinnerCombo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="@+id/txtTituloLista"
+        app:layout_constraintStart_toStartOf="@+id/txtTituloLista"
+        app:layout_constraintTop_toBottomOf="@+id/txtTituloLista" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pokemonesRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="60dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTituloLista"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCombo"
         tools:itemCount="3"
         tools:listitem="@layout/fragment_pokemon_cell" />
 

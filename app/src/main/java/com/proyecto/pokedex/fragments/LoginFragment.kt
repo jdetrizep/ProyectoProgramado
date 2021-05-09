@@ -46,4 +46,9 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             findNavController().navigate(action)
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

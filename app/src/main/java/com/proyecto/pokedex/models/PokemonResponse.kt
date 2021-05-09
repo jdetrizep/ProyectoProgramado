@@ -2,8 +2,8 @@ package com.proyecto.pokedex.models
 
 import com.google.gson.annotations.SerializedName
 
-data class Pokemon(
+data class PokemonResponse(
+    @SerializedName("id") val id: Int,
     @SerializedName("name") val name: String,
-    @SerializedName("url") val imageURL: String,
-    val description: String? = ""
+    @SerializedName("sprites") val arte: IlustracionPokemon
 )
