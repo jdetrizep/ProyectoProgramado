@@ -21,6 +21,7 @@ import com.proyecto.pokedex.models.SharedViewModel
 import com.proyecto.pokedex.models.TipoPokemon
 import com.proyecto.pokedex.viewmodels.PokemonListViewModel
 import com.proyecto.pokedex.viewmodels.TipoPokemonListViewModel
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_welcome.view.*
 
 class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
