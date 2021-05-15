@@ -1,56 +1,62 @@
 package com.proyecto.pokedex.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import com.bumptech.glide.Glide
 import com.proyecto.pokedex.R
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import com.proyecto.pokedex.adapter.PokemonAdapter
+import com.proyecto.pokedex.databinding.FragmentFavoritosBinding
+import com.proyecto.pokedex.models.Entrenador
+import com.proyecto.pokedex.models.SharedViewModel
+import kotlinx.android.synthetic.main.fragment_pokemon_cell.view.*
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FavoritosFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class FavoritosFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class FavoritosFragment : Fragment(R.layout.fragment_favoritos){
+    private var _binding: FragmentFavoritosBinding? = null
+    private val binding: FragmentFavoritosBinding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    //Manejo para pasar datos entre Fragments
+    private val model: SharedViewModel by activityViewModels()
+    private lateinit var user: Entrenador
+
+    private val adapter = PokemonAdapter()
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentFavoritosBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favoritos, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        //Imagen de Favorito
+        val imgTituloFav : String = "https://i1.sndcdn.com/avatars-000123079108-vuk0m6-t500x500.jpg"
+
+        //Carga el Parametro enviado desde otro Fragment
+        user = model.selected.value!!
+
+        binding.txtTituloFav.text = "Pokemones Favoritos de"
+        binding.txtEntrenadorFav.text = user.name.toUpperCase()
+
+        //Carga la imagen de Favoritos
+        Glide.with(view.context)
+            .load(imgTituloFav)
+            .circleCrop()
+            .into(binding.imgPrincipalFav)
+
+        //Cargan la lista del RecyclerView
+        binding.pokemonesFavRecyclerView.adapter = adapter
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FavoritosFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic fun newInstance(param1: String, param2: String) =
-                FavoritosFragment().apply {
-                    arguments = Bundle().apply {
-                        putString(ARG_PARAM1, param1)
-                        putString(ARG_PARAM2, param2)
-                    }
-                }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
-}
+}// Fin de la Clase FavoritosFragment

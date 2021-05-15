@@ -1,16 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/fondo_Poke2"
     tools:context=".fragments.FavoritosFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/TextAppearance.AppCompat.Display1"
-        android:text="Fragmento con Favoritos" />
+    <ImageView
+        android:id="@+id/imgPrincipalFav"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/txtTituloFav"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        tools:text="Pokemones Favoritos de"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgPrincipalFav"
+        app:layout_constraintTop_toTopOf="@+id/imgPrincipalFav" />
+
+    <TextView
+        android:id="@+id/txtEntrenadorFav"
+        style="@style/TextAppearance.AppCompat.Body2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        tools:text="Jose Perez"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/imgPrincipalFav"
+        app:layout_constraintEnd_toEndOf="@+id/txtTituloFav"
+        app:layout_constraintStart_toStartOf="@+id/txtTituloFav"
+        app:layout_constraintTop_toBottomOf="@+id/txtTituloFav" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/pokemonesFavRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="60dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgPrincipalFav"
+        tools:itemCount="3"
+        tools:listitem="@layout/fragment_pokemon_cell" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
