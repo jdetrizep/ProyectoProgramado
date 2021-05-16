@@ -11,4 +11,8 @@
     <string name="txtListaPokemon">Escoje el tipo de Pokemon que quieres consultar:</string>
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="version_normal">NORMAL</string>
+    <string name="version_shini">SHINY</string>
+    <string name="linea_texto">____________________________________________</string>
+    <string name="evolucion">EVOLUCIÓN</string>
 </resources>

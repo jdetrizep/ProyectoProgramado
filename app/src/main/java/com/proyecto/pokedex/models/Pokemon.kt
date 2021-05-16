@@ -9,9 +9,11 @@ data class Pokemon(
     @SerializedName("url") var pokemonUrl: String? = "",
     var imageURL: String? = "",
     var description: String? = "",
+    var imageShinyURL: String? = "",
     var numeroPokemon: Int? = 0
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readString()?: "",
         parcel.readString()?: "",
         parcel.readString()?: "",
         parcel.readString()?: "",
@@ -25,6 +27,7 @@ data class Pokemon(
         parcel.writeString(pokemonUrl)
         parcel.writeString(imageURL)
         parcel.writeString(description)
+        parcel.writeValue(imageShinyURL)
         parcel.writeValue(numeroPokemon)
     }
 

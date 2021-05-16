@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
@@ -21,6 +22,7 @@ import com.proyecto.pokedex.models.SharedViewModel
 import com.proyecto.pokedex.models.TipoPokemon
 import com.proyecto.pokedex.viewmodels.PokemonListViewModel
 import com.proyecto.pokedex.viewmodels.TipoPokemonListViewModel
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_welcome.view.*
 
@@ -114,6 +116,14 @@ class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
                 viemModelPokemones.makeAPIRequestListaPokemones(itemSeleccionado)
             }
         }
+
+        //Escuchamos por RX el click en Adapter
+        adapter.pokemonClicked
+            ?.observeOn(AndroidSchedulers.mainThread())
+            ?.subscribe {
+                var action = WelcomeFragmentDirections.actionWelcomeFragment2ToDetallepokemonFragment(it)
+                findNavController().navigate(action)
+            }
     }
 
     override fun onDestroyView() {

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fondo_Poke3"
+    tools:context=".fragments.DetallepokemonFragment">
+
+
+    <ImageView
+        android:id="@+id/imgPokeFrente"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toStartOf="@+id/imgPokeShini"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars"
+        android:contentDescription="@string/version_normal" />
+
+    <ImageView
+        android:id="@+id/imgPokeShini"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="24dp"
+        android:contentDescription="@string/version_shini"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imgPokeFrente"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/txtImgPokeNormal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/version_normal"
+        app:layout_constraintEnd_toEndOf="@+id/imgPokeFrente"
+        app:layout_constraintStart_toStartOf="@+id/imgPokeFrente"
+        app:layout_constraintTop_toBottomOf="@+id/imgPokeFrente" />
+
+    <TextView
+        android:id="@+id/txtImgPokeShiny"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:gravity="center"
+        android:text="@string/version_shini"
+        app:layout_constraintEnd_toEndOf="@+id/imgPokeShini"
+        app:layout_constraintStart_toStartOf="@+id/imgPokeShini"
+        app:layout_constraintTop_toBottomOf="@+id/imgPokeShini" />
+
+    <TextView
+        android:id="@+id/txtNombrePoke"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@+id/imgPokeShini"
+        app:layout_constraintStart_toStartOf="@+id/imgPokeFrente"
+        app:layout_constraintTop_toBottomOf="@+id/chkFavorito"
+        tools:text="001 Nombre Pokemon" />
+
+    <TextView
+        android:id="@+id/txtSubTituloApodo"
+        style="@style/TextAppearance.AppCompat.Body2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/txtNombrePoke"
+        app:layout_constraintStart_toStartOf="@+id/txtNombrePoke"
+        app:layout_constraintTop_toBottomOf="@+id/txtNombrePoke"
+        tools:text="Pokemon Apodo" />
+
+    <TextView
+        android:id="@+id/txtDetallePoke"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        tools:text="Detalle del Pokemon"
+        app:layout_constraintEnd_toEndOf="@+id/txtSubTituloApodo"
+        app:layout_constraintStart_toStartOf="@+id/txtSubTituloApodo"
+        app:layout_constraintTop_toBottomOf="@+id/txtSubTituloApodo" />
+
+    <TextView
+        android:id="@+id/txtLineaDivisor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/linea_texto"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@+id/txtDetallePoke"
+        app:layout_constraintStart_toStartOf="@+id/txtDetallePoke"
+        app:layout_constraintTop_toBottomOf="@+id/txtDetallePoke" />
+
+    <TextView
+        android:id="@+id/txtEvolucion"
+        style="@style/TextAppearance.AppCompat.Body2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="@string/evolucion"
+        app:layout_constraintEnd_toEndOf="@+id/txtLineaDivisor"
+        app:layout_constraintStart_toStartOf="@+id/txtLineaDivisor"
+        app:layout_constraintTop_toBottomOf="@+id/txtLineaDivisor" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/pokemonesEvoRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="60dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtEvolucion"
+        tools:itemCount="2"
+        tools:listitem="@layout/fragment_pokemon_cell" />
+
+    <CheckBox
+        android:id="@+id/chkFavorito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Favorito"
+        app:layout_constraintEnd_toEndOf="@+id/txtImgPokeShiny"
+        app:layout_constraintTop_toBottomOf="@+id/txtImgPokeShiny" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
