@@ -30,7 +30,7 @@ class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
     private var _binding: FragmentWelcomeBinding? = null
     private val binding: FragmentWelcomeBinding get() = _binding!!
 
-    //Se inicializa el viewModel
+    //Se inicializa el viewModelCreate
     private val viewModelTipo: TipoPokemonListViewModel by viewModels()
     private val viemModelPokemones: PokemonListViewModel by viewModels()
 

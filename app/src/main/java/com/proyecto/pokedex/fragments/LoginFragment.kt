@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.jakewharton.rxbinding2.view.RxView
 import com.jakewharton.rxbinding4.widget.textChanges
 import com.proyecto.pokedex.R
 import com.proyecto.pokedex.databinding.FragmentLoginBinding
