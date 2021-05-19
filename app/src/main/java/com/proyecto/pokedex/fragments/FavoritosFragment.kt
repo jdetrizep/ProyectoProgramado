@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -13,6 +14,7 @@ import com.proyecto.pokedex.R
 import com.proyecto.pokedex.adapter.PokemonAdapter
 import com.proyecto.pokedex.databinding.FragmentFavoritosBinding
 import com.proyecto.pokedex.db.entities.PokemonFavorito
+import com.proyecto.pokedex.extensions.mapToVisibility
 import com.proyecto.pokedex.models.Entrenador
 import com.proyecto.pokedex.models.PokemonApi
 import com.proyecto.pokedex.models.PokemonDetail
@@ -87,6 +89,10 @@ class FavoritosFragment : Fragment(R.layout.fragment_favoritos) {
                         )
                     }
                     adapter.pokemonesApi = pokemonesApi
+                    if (pokemonesApi.isEmpty()){
+                        binding.widgetsMensaje.visibility =
+                            binding.widgetsMensaje.isVisible.not().mapToVisibility()
+                    }
                 }
         )
     }
