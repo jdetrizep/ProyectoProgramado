@@ -13,16 +13,22 @@ import com.jakewharton.rxbinding4.widget.checkedChanges
 import com.proyecto.pokedex.R
 import com.proyecto.pokedex.adapter.PokemonAdapter
 import com.proyecto.pokedex.databinding.FragmentDetallepokemonBinding
+import com.proyecto.pokedex.db.entities.PokemonFavorito
 import com.proyecto.pokedex.models.Entrenador
 import com.proyecto.pokedex.models.SharedViewModel
 import com.proyecto.pokedex.viewmodels.CreatePokemonFavoritoViewModel
 import com.proyecto.pokedex.viewmodels.DeletePokemonFavoritoViewModel
+import com.proyecto.pokedex.viewmodels.PokemonFavoritoListViewModel
+import io.reactivex.Observable
+import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 
 class DetallepokemonFragment : Fragment(R.layout.fragment_detallepokemon) {
     val arguments: DetallepokemonFragmentArgs by navArgs()
     private var _binding: FragmentDetallepokemonBinding? = null
     private val binding: FragmentDetallepokemonBinding get() = _binding!!
+    val viewModel: PokemonFavoritoListViewModel by viewModels()
 
     val disposables = CompositeDisposable()
 
@@ -54,6 +60,8 @@ class DetallepokemonFragment : Fragment(R.layout.fragment_detallepokemon) {
         binding.txtNombrePoke.text =
             arguments.pokemon.numeroPokemon.toString() + " " + arguments.pokemon.name.toUpperCase()
 
+        //var vPokemonFav: Boolean = esPokemonFavorito(arguments.pokemon.numeroPokemon,user.name)
+
         Glide.with(view.context)
             .load(arguments.pokemon.imageURL)
             .circleCrop()
@@ -68,6 +76,13 @@ class DetallepokemonFragment : Fragment(R.layout.fragment_detallepokemon) {
         binding.pokemonesEvoRecyclerView.adapter = adapter
 
         //RX
+        disposables.add(
+            viewModel.getConsultaPokemonFavorito(arguments.pokemon.numeroPokemon!!, user.name)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    binding.chkFavorito.isChecked = it.isNotEmpty()
+                }
+        )
         /*binding.chkFavorito.checkedChanges()
             .subscribe()*/
 
@@ -100,6 +115,7 @@ class DetallepokemonFragment : Fragment(R.layout.fragment_detallepokemon) {
                 }
             }
         }
+
     }
 
     override fun onDestroyView() {

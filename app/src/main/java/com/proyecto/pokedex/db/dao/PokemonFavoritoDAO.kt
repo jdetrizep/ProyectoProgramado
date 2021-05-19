@@ -11,7 +11,13 @@ import io.reactivex.Observable
 interface PokemonFavoritoDAO {
 
     @Query("SELECT * FROM pokemonfavorito WHERE usuarioNombre = :userName")
-    fun getAllPokemonFavorito(userName:String) : Observable<List<PokemonFavorito>>
+    fun getAllPokemonFavorito(userName: String): Observable<List<PokemonFavorito>>
+
+    @Query("SELECT * FROM pokemonfavorito WHERE id = :idPokemonFavorito AND usuarioNombre = :userName")
+    fun getConsultaPokemonFavorito(
+        idPokemonFavorito: Int,
+        userName: String
+    ): Observable<List<PokemonFavorito>>
 
     @Insert
     suspend fun insertPokemonFavorito(pokemonFavorito: PokemonFavorito)

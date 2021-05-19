@@ -11,6 +11,12 @@ class PokemonFavoritoRepository(context: Context) {
     fun getAllPokemonFavorito(userName: String): Observable<List<PokemonFavorito>> =
         db.pokemonFavoritoDAO().getAllPokemonFavorito(userName)
 
+    fun getConsultaPokemonFavorito(
+        idPokemonFavorito: Int,
+        userName: String
+    ): Observable<List<PokemonFavorito>> =
+        db.pokemonFavoritoDAO().getConsultaPokemonFavorito(idPokemonFavorito, userName)
+
     suspend fun deletePokemonFavorito(pokemonFavorito: PokemonFavorito) {
         db.pokemonFavoritoDAO().deletePokemonFavorito(pokemonFavorito)
     }
