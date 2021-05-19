@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.jakewharton.rxbinding4.widget.checkedChanges
 import com.proyecto.pokedex.R
 import com.proyecto.pokedex.adapter.PokemonAdapter
 import com.proyecto.pokedex.databinding.FragmentDetallepokemonBinding
@@ -65,6 +66,10 @@ class DetallepokemonFragment : Fragment(R.layout.fragment_detallepokemon) {
 
         //Cargan la lista del RecyclerView
         binding.pokemonesEvoRecyclerView.adapter = adapter
+
+        //RX
+        /*binding.chkFavorito.checkedChanges()
+            .subscribe()*/
 
         binding.chkFavorito.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {

@@ -69,13 +69,6 @@ class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
 
         binding.pokemonesRecyclerView.adapter = adapter
 
-        binding.pokemonesRecyclerView.addItemDecoration(
-            DividerItemDecoration(
-                view.context,
-                VERTICAL
-            )
-        )
-
         var layoutManager = GridLayoutManager(view.context, 3)
         binding.pokemonesRecyclerView.layoutManager = layoutManager
 
